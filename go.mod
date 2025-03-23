@@ -6,7 +6,7 @@ require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-playground/validator/v10 v10.24.0
 	github.com/gopher-fleece/runtime v1.2.0
-	github.com/haimkastner/unitsnet-go v1.1.35
+	github.com/haimkastner/unitsnet-go v1.1.36
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/gin-swagger v1.6.0
 )
