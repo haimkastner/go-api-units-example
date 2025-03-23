@@ -39,7 +39,10 @@ func main() {
 
 	// Add CORS middleware with permissive settings
 	router.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"https://units-docs.gleece.dev"}, // Allow all origins
+		AllowOrigins:  []string{"https://units-docs.gleece.dev"}, // Allow all origins
+		AllowMethods:  []string{"*"},                             // Allow all methods
+		AllowHeaders:  []string{"*"},                             // Allow all headers
+		ExposeHeaders: []string{"Content-Length"},
 	}))
 
 	// Register custom validation rules
