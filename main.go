@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	routes "github.com/haimkastner/go-api-units-example/routes"
@@ -10,16 +11,16 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-//go:embed openapi/swagger.json
+//go:embed openapi/openapi.json
 var swaggerSpec embed.FS
 
 // Handler to serve the Swagger spec file
 func serveSwaggerSpec(c *gin.Context) {
 	// Read the embedded swagger.json file
-	specData, err := swaggerSpec.ReadFile("openapi/swagger.json")
+	specData, err := swaggerSpec.ReadFile("openapi/openapi.json")
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Failed to read swagger spec",
+			"error": "Failed to read openapi spec",
 		})
 		return
 	}
@@ -40,12 +41,17 @@ func main() {
 
 	// # End Gleece integration part
 
-	// Serve the Swagger spec file at /openapi/swagger.json
-	router.GET("/openapi/swagger.json", serveSwaggerSpec)
+	// Serve the Swagger spec file at /openapi/openapi.json
+	router.GET("/openapi/openapi.json", serveSwaggerSpec)
 
 	// Serve the Swagger UI at /swagger/index.html
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, ginSwagger.URL("/openapi/swagger.json")))
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, ginSwagger.URL("/openapi/openapi.json")))
 
-	// Start the server on port 8080
-	router.Run("127.0.0.1:8080")
+	// Get port from environment variable or use 8080 as default
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Default port if not specified
+	}
+
+	router.Run(":" + port)
 }
