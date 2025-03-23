@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	routes "github.com/haimkastner/go-api-units-example/routes"
 	swaggerFiles "github.com/swaggo/files"
@@ -35,6 +36,11 @@ func main() {
 
 	// Create a default gin router
 	router := gin.Default()
+
+	// Add CORS middleware with permissive settings
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"https://units-docs.gleece.dev"}, // Allow all origins
+	}))
 
 	// Register custom validation rules
 	routes.RegisterRoutes(router)
