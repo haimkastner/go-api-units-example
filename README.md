@@ -1,4 +1,4 @@
-# 🧮 Go API Units Example
+# Go API Units Example
 
 <p align="center">
   <em>Handling measurement units in Go APIs - the right way</em>
