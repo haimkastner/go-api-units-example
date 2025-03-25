@@ -23,7 +23,7 @@ Using this approach, your API can:
 ## 🛠️ Key Dependencies
 
 - [unitsnet-go](https://github.com/haimkastner/unitsnet-go) - Comprehensive unit conversion library with 100+ unit types
-- [Gleece](https://github.com/gleece/gleece) - Go framework for building APIs from code.
+- [Gleece](https://github.com/gopher-fleece/gleece) - Go framework for building APIs from code.
 
 ## 🚀 Live Demo
 
