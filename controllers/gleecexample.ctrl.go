@@ -5,13 +5,16 @@ import (
 	"github.com/haimkastner/unitsnet-go/units"
 )
 
-// UsersController
-// @Tag(Units) Users
+// UnitsController
+// @Tag(Units) Units Operations
 // @Route(/units)
 // @Description The Units API Example
 type UnitsController struct {
 	runtime.GleeceController // Embedding the GleeceController to inherit its methods
 }
+
+// The LengthFactory object to create the Length objects
+var lf = units.LengthFactory{}
 
 // @Description Post unit API and return the processed unit
 // @Method(POST)
@@ -21,11 +24,14 @@ type UnitsController struct {
 // @Response(200) The response with the processed unit
 // @ErrorResponse(500) The error when process failed
 func (ec *UnitsController) TestUnit(useUnit *units.LengthUnits, data units.LengthDto) (units.LengthDto, error) {
-	lf := units.LengthFactory{}
-	unit, _ := lf.FromDto(data)
-	// return error if the unit is not valid
+	// The unit to be processed
+	var unit *units.Length
 
-	// Do the logic here using the abstracted unit
+	// Load the unit from the DTO
+	unit, _ = units.LengthFactory{}.FromDto(data)
 
+	// TODO: Process the unit (logic here)
+
+	// Return the processed unit
 	return unit.ToDto(useUnit), nil
 }
