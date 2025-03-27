@@ -13,7 +13,6 @@
           }
         },
         "required": [
-          "value",
           "unit"
         ],
         "title": "LengthDto",
@@ -131,9 +130,9 @@
         "operationId": "TestUnit",
         "parameters": [
           {
-            "description": "The unit to be used in response",
+            "description": "The unit to be used in response - optional",
             "in": "query",
-            "name": "useUnit",
+            "name": "responseQuantity",
             "schema": {
               "$ref": "#/components/schemas/LengthUnits"
             }
